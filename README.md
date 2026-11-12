@@ -1,224 +1,131 @@
 # Python with MySQL & MariaDB
 
-Welcome to the **Python-with-MySQL-MariaDB** repository! This project demonstrates how to integrate Python with MySQL and MariaDB databases for various data management and manipulation tasks. It includes practical examples and scripts for interacting with these databases using Python, showcasing how to perform common database operations.
+![MySQL](https://img.shields.io/badge/MySQL-compatible-4479A1?logo=mysql&logoColor=white)
+![MariaDB](https://img.shields.io/badge/MariaDB-compatible-003545?logo=mariadb&logoColor=white)
+![PyMySQL](https://img.shields.io/badge/driver-PyMySQL-4B8BBE)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-## 📋 Contents
+A beginner-friendly collection of Python scripts for learning how to connect to MySQL or MariaDB and run common SQL operations. The numbered examples progress from database setup and CRUD queries to filtering, joins, and aggregate functions.
 
-- [Introduction](#introduction)
-- [Topics Covered](#topics-covered)
-- [Getting Started](#getting-started)
-- [Code Examples](#code-examples)
-- [Best Practices](#best-practices)
-- [FAQ](#faq)
-- [Troubleshooting](#troubleshooting)
+> These are standalone learning examples, not a packaged application. Most scripts connect to a local database named `school`; connection settings are currently written directly in each script.
+
+## Contents
+
+- [What you will learn](#what-you-will-learn)
+- [Requirements](#requirements)
+- [Setup](#setup)
+- [Examples](#examples)
+- [Database tables used by the examples](#database-tables-used-by-the-examples)
+- [Safe usage notes](#safe-usage-notes)
 - [Contributing](#contributing)
-- [Additional Resources](#additional-resources)
-- [Challenges Faced](#challenges-faced)
-- [Lessons Learned](#lessons-learned)
-- [Why I Created This Repository](#why-i-created-this-repository)
 - [License](#license)
-- [Contact](#contact)
+- [Connect with me](#connect-with-me)
 
----
+## What you will learn
 
-## 📖 Introduction
+- Connecting Python to MySQL and MariaDB with PyMySQL
+- Creating a database and table, then inserting, selecting, updating, and deleting rows
+- Sorting, limiting, searching, and filtering query results
+- Using `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, and join conditions
+- Applying `BETWEEN`, `IN`, `DISTINCT`, `GROUP BY`, `MIN`, `MAX`, `SUM`, `AVG`, and `COUNT`
 
-This repository provides a set of Python scripts and examples for connecting to and interacting with MySQL and MariaDB databases. It includes code for basic CRUD (Create, Read, Update, Delete) operations, querying, and managing database connections. The goal is to provide a practical guide for developers looking to work with these databases using Python.
+## Requirements
 
----
+- Python 3
+- A running MySQL or MariaDB server and a database user with permission to create and modify tables
+- The PyMySQL driver
 
-## 🔍 Topics Covered
+Install the dependency:
 
-- **Database Connection**: Connecting to MySQL and MariaDB using Python.
-- **CRUD Operations**: Performing Create, Read, Update, and Delete operations on database records.
-- **Query Execution**: Running SQL queries and handling results.
-- **Data Management**: Managing database schemas, tables, and records.
-- **Error Handling**: Handling common database errors and exceptions.
+```bash
+python -m pip install PyMySQL
+```
 
----
+## Setup
 
-## 🚀 Getting Started
-
-To get started with this project, follow these steps:
-
-1. **Clone the repository:**
+1. Clone the repository and enter its directory:
 
    ```bash
    git clone https://github.com/Md-Emon-Hasan/Python-with-MySQL-MariaDB.git
-   ```
-
-2. **Navigate to the project directory:**
-
-   ```bash
    cd Python-with-MySQL-MariaDB
    ```
 
-3. **Install the required packages:**
+2. Open the scripts you want to run and update the connection arguments to match your local server. Most scripts use `host='localhost'`, `user='root'`, an empty password, and `database='school'`. Change these values if your server uses different credentials.
+
+3. Start your MySQL or MariaDB server. Run the numbered setup and CRUD examples in order:
 
    ```bash
-   pip install -r requirements.txt
+   python "1 Database and Connection.py"
+   python "2 Create Table.py"
+   python "3 Insert Query.py"
+   python "4 Select Query.py"
    ```
 
-4. **Set up your database:**
-   - Make sure you have MySQL or MariaDB installed and running.
-   - Create a database and configure your connection settings in the Python scripts.
+   Script 1 creates the `school` database. Script 2 creates a `student` table. The insert and select examples then use that table. The remaining CRUD scripts (`5 Delete Query.py` and `6 Update Query.py`) also work with it.
 
-5. **Run the examples:**
-   - Execute the Python scripts to see examples of database operations.
-
----
-
-## 💻 Code Examples
-
-The repository includes various Python scripts demonstrating how to:
-
-- **Connect to MySQL/MariaDB:**
-
-  ```python
-  import mysql.connector
-  
-  conn = mysql.connector.connect(
-      host="localhost",
-      user="yourusername",
-      password="yourpassword",
-      database="yourdatabase"
-  )
-  ```
-
-- **Perform CRUD Operations:**
-
-  ```python
-  cursor = conn.cursor()
-  
-  # Create
-  cursor.execute("INSERT INTO tablename (column1, column2) VALUES (%s, %s)", (value1, value2))
-  
-  # Read
-  cursor.execute("SELECT * FROM tablename")
-  results = cursor.fetchall()
-  
-  # Update
-  cursor.execute("UPDATE tablename SET column1 = %s WHERE column2 = %s", (new_value, condition))
-  
-  # Delete
-  cursor.execute("DELETE FROM tablename WHERE column1 = %s", (value,))
-  ```
-
----
-
-## 🌟 Best Practices
-
-Recommendations for working with Python and MySQL/MariaDB:
-
-- **Use Environment Variables:** Store sensitive information like database credentials in environment variables.
-- **Use Parameterized Queries:** Protect against SQL injection by using parameterized queries.
-- **Close Connections:** Ensure that database connections and cursors are closed properly to avoid resource leaks.
-- **Handle Exceptions:** Implement error handling to manage potential issues gracefully.
-
----
-
-## ❓ FAQ
-
-**Q: What is the difference between MySQL and MariaDB?**  
-A: MariaDB is a fork of MySQL with additional features and improvements. Both are similar, but MariaDB often includes more advanced features and is community-driven.
-
-**Q: How do I configure the database connection?**  
-A: Update the connection settings in the Python scripts with your database host, user, password, and database name.
-
-**Q: Can I use this repository for production applications?**  
-A: The repository provides basic examples and is meant for learning and development purposes. For production use, consider additional security and optimization measures.
-
----
-
-## 🛠️ Troubleshooting
-
-Common issues and their solutions:
-
-- **Issue: Connection Error**  
-  *Solution:* Verify your database credentials and ensure that the MySQL/MariaDB server is running.
-
-- **Issue: Import Error**  
-  *Solution:* Ensure all required packages are installed correctly using `pip install -r requirements.txt`.
-
----
-
-## 🤝 Contributing
-
-Contributions to this project are welcome! Here’s how you can contribute:
-
-1. **Fork the repository.**
-2. **Create a new branch:**
+4. Run any other example with Python, quoting the filename because it contains spaces. For example:
 
    ```bash
-   git checkout -b feature/new-feature
+   python "7 Order by and Limit.py"
    ```
 
-3. **Make your changes and improvements.**
-4. **Commit your changes:**
+The scripts are separate exercises; there is no central application entry point or `requirements.txt` in this repository.
 
-   ```bash
-   git commit -am 'Add a new feature or fix an issue'
-   ```
+## Examples
 
-5. **Push to the branch:**
+| File | Topic | Tables referenced |
+| --- | --- | --- |
+| `1 Database and Connection.py` | Connect and create the `school` database | Creates database |
+| `2 Create Table.py` | Create the student table | `student` |
+| `3 Insert Query.py` | Insert one student; includes a commented multi-row example | `student` |
+| `4 Select Query.py` | Select and display student records | `student` |
+| `5 Delete Query.py` | Delete a student by ID | `student` |
+| `6 Update Query.py` | Update a student record | `student` |
+| `7 Order by and Limit.py` | Sort results and limit rows | `student` |
+| `8 Searching and Filter Data.py` | Search by student name and class | `student` |
+| `9 INNER JOIN.py` | Inner join state and country records | `state`, `country` |
+| `10 LEFT JOIN.py` | Left join state and country records | `state`, `country` |
+| `11 RIGHT JOIN.py` | Right join users and orders | `user`, `orders` |
+| `12 EQUI JOIN.py` | Join state and country with a matching-key condition | `state`, `country` |
+| `13 Self Join and Full Outer.py` | Self-join a category hierarchy | `cat` |
+| `14 BETWEEN Operators.py` | Filter IDs within a range | `state` |
+| `15 Use of MAX and MIN Functions.py` | Find the maximum order amount; includes a commented minimum query | `orders` |
+| `16 GROUP BY Statement.py` | Count records grouped by department name | `operators` |
+| `17 Distinct Keyword.py` | Return unique department names | `operators` |
+| `18 SUM () Function.py` | Sum order amounts | `orders` |
+| `19 AVG ().py` | Average order amount | `orders` |
+| `20 Count Function.py` | Count order records | `orders` |
+| `21 IN or NOT.py` | Select orders whose IDs match a list | `orders` |
 
-   ```bash
-   git push origin feature/new-feature
-   ```
+## Database tables used by the examples
 
-6. **Submit a pull request.**
+Only the `student` table is created by the scripts in this repository. The join, category, state/country, order, and operator examples expect additional tables and columns to exist in the `school` database. No schema or sample data for those tables is included, so create and populate the required tables before running those exercises. Check each script's SQL query for the exact column names it uses.
 
----
+## Safe usage notes
 
-## 📚 Additional Resources
+- Use a database account with only the permissions needed for the exercise. Avoid using a privileged account for applications.
+- Do not commit real passwords or other secrets. For personal use, replace the example credentials locally; for a real application, load credentials from environment variables or a secret manager.
+- Use parameterized queries for values supplied by users. Most examples that pass values as query parameters demonstrate this pattern. `8 Searching and Filter Data.py` currently builds SQL by concatenating input, which is unsafe for untrusted input; update it to use `%s` placeholders before adapting it for real use.
+- These scripts are intended for learning. They use simple error handling and do not consistently close cursors or connections.
 
-Here are some additional resources for learning more about Python and database integration:
+## Contributing
 
-- **MySQL Connector/Python Documentation:** [MySQL Connector/Python](https://dev.mysql.com/doc/connector-python/en/)
-- **MariaDB Documentation:** [MariaDB Documentation](https://mariadb.com/kb/en/documentation/)
-- **Python MySQL Tutorial:** [Python MySQL Tutorial](https://www.mysqltutorial.org/python-mysql/)
+Improvements and additional examples are welcome:
 
----
+1. Fork the repository.
+2. Create a branch for your change.
+3. Make and commit your changes.
+4. Push the branch and open a pull request with a short description of the update.
 
-## 💪 Challenges Faced
+## License
 
-Some challenges encountered during the development of this project include:
+This project is distributed under the [MIT License](LICENSE).
 
-- Ensuring compatibility between different versions of MySQL and MariaDB.
-- Handling various types of database errors and exceptions effectively.
+## Connect with me
 
----
-
-## 📚 Lessons Learned
-
-Key lessons learned from this project:
-
-- Effective management of database connections and transactions.
-- Importance of using parameterized queries to prevent SQL injection attacks.
-- Benefits of properly structuring and documenting code for maintainability.
-
----
-
-## 🌟 Why I Created This Repository
-
-This repository was created to provide practical examples of integrating Python with MySQL and MariaDB databases. It aims to help developers understand how to perform common database operations and manage data using Python, serving as a useful reference for both beginners and experienced programmers.
-
----
-
-## 📝 License
-
-This repository is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
-
----
-
-## 📬 Contact
-
-- **Email:** [iconicemon01@gmail.com](mailto:iconicemon01@gmail.com)
-- **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)
-- **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)
-- **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan)
-- **Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)
-
----
-
-Feel free to adjust and expand this template according to your project's specifics and requirements.
+- 🌐 **Portfolio:** [emonlabs-ai.hitechparks.com](https://emonlabs-ai.hitechparks.com)
+- 💻 **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)
+- 💼 **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)
+- 🤗 **Hugging Face:** [emonHasan01](https://huggingface.co/emonHasan01)
+- 📧 **Email:** [emon.mlengineer@gmail.com](mailto:emon.mlengineer@gmail.com)
+- 📱 **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)
